@@ -1,16 +1,139 @@
-# Code optimization
+# Pass 1 Macro Processor
 
-function create
+input code 
+
+mnt, mdt, ala, intermediate_code = macro_pass1(input_code)
+
+def macro_pass1(assembly_code_lines):
+
+    initialize all mnt = [], 
+    mdt, ala, mdt_index, inside_macro, macro_name, intermediate_code, current_ala
+
+    for line in assembly_code_lines:
+
+        get stripped 
+
+        if stripped is MACRO:
+            inside_macro is True
+            continue
+        
+        if inside_macro:
+
+            if not macro_name:
+
+                macro_name, arguments = parse_macro(stripped)
+
+                create_mnt_entry(mnt, macro_name, mdt_index)
+
+                current_ala = create_ala_entry(ala, arguments)
+                ala.extend(current_ala)
+
+                mdt.append(macro_name, arguments)
+                mdt_index += 1
+                continue
+            
+            if stripped is MEND:
+                mdt.append(MEND)
+                
+                mdt_index += 1
+                macro_name=""
+                current_ala = []
+                continue
+
+            mdt.append(replace_args(stripped, current_ala))
+
+        else:
+            intermediate_code.append(line)
+
+    return mnt, mdt, ala, intermediate_code
+
+def parse_macro(line):
     
-    lines, output, constant
+    parts = line.split(None, 1)
+    parts[0] macro name
 
-    for
-    line 
-    stripped
+    arguments = []
+    if len(parts) > 1
+        arguments = [arg.strip() for arg in parts[1].split(',')]
 
-    if not stripped - output and continue
+    return macro_name, arguments 
 
-    const_match with re
+def create_mnt_entry():
+    mnt.append({
+        "Index": len(mnt) + 1,
+        "Macro Name": macro name,
+        MDT index: mdt_index
+    })
 
-    if const_match - var val output and continue
+def create_ala_entry(ala, arguments):
+    return [
+        {
+            index:
+            formal Parameter: arg 
+        }
+
+        for i, arg in enumerate(arguments)
+    ]
+
+def replace_formal_args(line, ala):
+    for entry in ala:
+        line = line.replace(entry[formal parameter], entry[index])
     
+    return line
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Pass 2 Macro Processor
+
+sample input:
+mnt = [{"Index": 1, "Macro Name": "ABC"}]
+mdt = ["ABC &arg1, &arg2", "", ""]
+ala = [
+    {
+        index 1, formal parameter &arg1, value data1
+        index 2, formal parameter &arg2, value data2
+    }
+]
+intermediate_code = ["START", "ABC data1, data2", "END"]
+
+
+expanded_code = replace_macros_in_intermediate_code(mnt, mdt, ala, intermediate_code)
+
+def replace_macros_in_intermediate_code():
+
+    expanded_code = []
+
+    ala_dict = {entry[formal parameter]: entry[value] for entry in ala}
+
+    for line in intermediate_code:
+
+        get stripped
+
+        for entry in mnt:
+
+            if stripped.startswith(entry["MACRO NAME"]):
+
+                macro_name = entry["macro name"]
+                mdt_index = entry["mdt index"] - 1
+                mdt_entry = mdt[mdt_index]
+
+                args = (
+
+                )
+                args = [args.strip() for arg in args]
+
+            
+                
+
+
