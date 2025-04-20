@@ -1,0 +1,16 @@
+# Code optimization
+
+function create
+    
+    lines, output, constant
+
+    for
+    line 
+    stripped
+
+    if not stripped - output and continue
+
+    const_match with re
+
+    if const_match - var val output and continue
+    
